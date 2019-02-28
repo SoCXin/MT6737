@@ -10,12 +10,15 @@
 
 [![sites](docs/MT6737.png)](http://www.mcuyun.com)
 
+```
 
 分辨率支持              QHD(540*960)       HD(1280*720)        FHD(1920*1080)
 Part Number             MT6737M            MT6737A             MT6737T
 C2K Version 6模         MT6737V/TM         MT6737V/TA          MT6737V/TT
 LTE-FDD 5模             MT6737V/WM         MT6737V/WA          MT6737V/WT
 LTE-TDD 3模             MT6737V/CM         MT6737V/CA          MT6737V/CT
+
+```
 
 主要特点：低成本 cat-4 LTE基带
 
