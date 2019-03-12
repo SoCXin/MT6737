@@ -1,14 +1,20 @@
-﻿# [MT6737](https://github.com/mcuyun/MT6737) 
+﻿# [MT6737](https://github.com/sochub/MT6737)
 
-[![sites](mcuyun/mcuyun.png)](http://www.mcuyun.com)
+[![sites](SoC/SoC.png)](http://www.qitas.cn) 
 
-#### 归属：[cortex A53系列](https://github.com/mcuyun/CA53)
+#### 归属：[cortex A53](https://github.com/sochub/CA53)
 
-#### [关于悠云](https://github.com/mcuyun)可访问 www.mcuyun.com
+## [描述](https://github.com/sochub/MT6737/wiki) 
 
-## [描述](https://github.com/mcuyun/CA53/wiki) 
+[MT6737](https://www.mediatek.com/products/smartphones/mt6737) is one of the most cost-effective R.9 Cat-4 LTE solution, MT6737 matches the value-driven market by minimizing BOM, GMO and Memory costs in addition to delivering category-leading performance and power-efficiency. 
 
-[![sites](docs/MT6737.png)](http://www.mcuyun.com)
+MediaTek MT6737 also supports IMS which allows for rich network features such as VoLTE, ViLTE, VoWiFi and RCS, wherever in the world thanks to its all-band 4G modem.
+
+Besides, MT6737 outperforms competing solutions in terms of energy-efficiency, slashing energy use by more than half in GPS and FM scenarios – and by a third in video playback or gaming scenarios. On the performance side, its quad-core 64bit CPU based on ARM Cortex-A53 and its Mali T720 MP GPU deliver sufficient performance for the top Android apps to run smoothly including popular 3D games.
+
+[![sites](docs/MT6737.png)](http://www.qitas.cn) 
+
+### 芯片型号
 
 ```
 
@@ -20,20 +26,24 @@ LTE-TDD 3模             MT6737V/CM         MT6737V/CA          MT6737V/CT
 
 ```
 
-主要特点：低成本 cat-4 LTE基带
+主要特点：集成cat-4 LTE基带
 
-功能特点：13M ISP、mali-T720
+功能特点：13M ISP、mali T720
 
-主要短板：主频、接口
+主要短板：CPU主频、接口
 
-芯片封装：
-
-#### [docs](docs/README.md)
+#### [docs](docs/)
 
 参考设计和数据手册
+
+#### [linux](linux/)
+
+linux系统源文件
+
 
 
 ---
 
-###  [悠云，为嵌入式](http://www.mcuyun.com)   
+###  [SoC开发平台](http://www.qitas.cn)   
+
 ###  qitas@qitas.cn
