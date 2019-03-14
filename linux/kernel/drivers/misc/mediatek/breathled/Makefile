@@ -1,0 +1,4 @@
+
+#obj-$(CONFIG_MTK_BASE_POWER) += base/
+
+obj-$(CONFIG_MTK_BREATHLED_FY6203) += fy6203/

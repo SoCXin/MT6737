@@ -1,0 +1,8 @@
+config MTK_REMOTE_ET4003
+	bool "MTK_REMOTE_ET4003"
+	default n
+	help
+	  It support different remote sensor.
+          If this option is set,
+	  it will support
+          remote et4003 sensor.

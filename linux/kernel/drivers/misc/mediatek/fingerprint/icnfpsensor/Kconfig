@@ -1,0 +1,8 @@
+config MTK_ICN_FINGER
+	bool "zhoucheng add MTK_ICN_FINGER"
+	default n
+	help
+	  It support different alsps sensor.
+          If this option is set,
+	  it will support
+          icn sensor.

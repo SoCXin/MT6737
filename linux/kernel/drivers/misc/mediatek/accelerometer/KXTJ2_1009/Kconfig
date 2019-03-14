@@ -1,0 +1,9 @@
+config MTK_KXTJ2_1009
+	bool "zhoucheng add MTK_KXTJ2_1009"
+	default n
+	help
+	  It support different accelerometer sensor.
+          If this option is set,
+	  it will support
+          MTK_KXTJ9_1002_NEW Accelerometer.
+

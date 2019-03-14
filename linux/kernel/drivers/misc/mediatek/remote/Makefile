@@ -1,0 +1,4 @@
+
+#obj-$(CONFIG_MTK_BASE_POWER) += base/
+
+obj-$(CONFIG_MTK_REMOTE_ET4003) += et4003yd18/

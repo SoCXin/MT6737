@@ -1,0 +1,9 @@
+config MTK_PA122_NEW
+	bool "zhoucheng add PA12201001 for MediaTek package"
+	default n
+	help
+	  It support different alsps sensor.
+          If this option is set,
+	  it will support
+          PA12201001 alsps.
+

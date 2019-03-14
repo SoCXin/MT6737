@@ -1,0 +1,8 @@
+config MTK_BREATHLED_FY6203
+	bool "MTK_BREATHLED_FY6203"
+	default n
+	help
+	  It support different breath .
+          If this option is set,
+	  it will support
+          breath fy6203 led.

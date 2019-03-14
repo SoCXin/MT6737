@@ -1,0 +1,87 @@
+#
+# Touchscreen driver configuration
+#
+menuconfig INPUT_TOUCHSCREEN
+	bool "Touchscreens"
+	help
+	  Say Y here, and a list of supported touchscreens will be displayed.
+	  This option doesn't affect the kernel.
+
+	  If unsure, say Y.
+
+if INPUT_TOUCHSCREEN
+
+config TOUCHSCREEN_MTK
+	bool "MediaTek Touch Panel Driver"
+	help
+	  Say Y here if you have MediaTek touch panel.
+
+	  If unsure, say N.
+
+	  To compile this dirver as a module, choose M here: the
+	  module will be called.
+
+config TOUCHSCREEN_MTK_GT1XX_GS
+	bool "TOUCHSCREEN_MTK_GT1XX_GS for Mediatek package"
+	default n
+	help
+	  Say Y here if you have TOUCHSCREEN_MTK_GT1XX_GS touch panel.
+
+	  If unsure, say N.
+
+	  To compile this dirver as a module, choose M here: the
+	  module will be called.
+	  
+source "drivers/input/touchscreen/mediatek/GT1XX_GS/Kconfig"
+
+config TOUCHSCREEN_MTK_GT9XX_GS
+	bool "TOUCHSCREEN_MTK_GT9XX_GS for Mediatek package"
+	default n
+	help
+	  Say Y here if you have TOUCHSCREEN_MTK_GT9XX_GS touch panel.
+
+	  If unsure, say N.
+
+	  To compile this dirver as a module, choose M here: the
+	  module will be called.
+	  
+source "drivers/input/touchscreen/mediatek/GT9XX_GS/Kconfig"
+
+config TOUCHSCREEN_MTK_GT9XX_HOTKNOT_SCP
+	bool "GT9XX_HOTKNOT_SCP for Mediatek package"
+	default n
+	help
+	  Say Y here if you have GT9XX_HOTKNOT_SCP touch panel.
+
+	  If unsure, say N.
+
+	  To compile this dirver as a module, choose M here: the
+	  module will be called.
+	  
+source "drivers/input/touchscreen/mediatek/GT9XX_hotknot_scp/Kconfig"
+
+config TOUCHSCREEN_MTK_FOCALTECH
+	bool "FOCALTECH for Mediatek package"
+	default n
+	help
+	  Say Y here if you have FOCALTECH touch panel.
+
+	  If unsure, say N.
+
+	  To compile this dirver as a module, choose M here: the
+	  module will be called.
+	  
+source "drivers/input/touchscreen/mediatek/focaltech/Kconfig"
+	  
+config TOUCHSCREEN_MTK_MSTAR
+	bool "MSTAR for Mediatek package"
+	default n
+	help
+	  Say Y here if you have MSTAR touch panel.
+
+	  If unsure, say N.
+
+	  To compile this dirver as a module, choose M here: the
+	  module will be called.
+	  
+endif

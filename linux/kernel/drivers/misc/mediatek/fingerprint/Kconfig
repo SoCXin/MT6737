@@ -1,0 +1,10 @@
+
+config CUSTOM_KERNEL_FINGER
+	bool "CUSTOM_KERNEL_FINGER"
+	help
+	  FINGER sensor driver
+
+source "drivers/misc/mediatek/fingerprint/gfx1xm/Kconfig"
+source "drivers/misc/mediatek/fingerprint/sw9362n/Kconfig"
+source "drivers/misc/mediatek/fingerprint/icnfpsensor/Kconfig"
+source "drivers/misc/mediatek/fingerprint/fegefpsensor/Kconfig"

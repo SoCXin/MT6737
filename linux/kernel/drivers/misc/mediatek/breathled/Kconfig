@@ -1,0 +1,7 @@
+
+config CUSTOM_KERNEL_BREATHLED
+	bool "CUSTOM_KERNEL_BREATHLED"
+	help
+	  breathled sensor driver
+
+source "drivers/misc/mediatek/breathled/fy6203/Kconfig"

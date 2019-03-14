@@ -1,0 +1,5 @@
+config MTK_FEGE_FINGER
+	bool "MTK_FEGE_FINGER"
+	default n
+	help
+	  it will support fege sensor.

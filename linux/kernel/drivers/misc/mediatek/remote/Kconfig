@@ -1,0 +1,7 @@
+
+config CUSTOM_KERNEL_REMOTE
+	bool "CUSTOM_KERNEL_REMOTE"
+	help
+	  remote sensor driver
+
+source "drivers/misc/mediatek/remote/et4003yd18/Kconfig"

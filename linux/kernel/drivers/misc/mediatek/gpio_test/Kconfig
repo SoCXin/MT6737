@@ -1,0 +1,5 @@
+config CUSTOM_KERNEL_IOTEST
+	bool "runyee kernel gpio export pin test"
+	default n
+	---help---
+	  runyee kernel gpio export pin test

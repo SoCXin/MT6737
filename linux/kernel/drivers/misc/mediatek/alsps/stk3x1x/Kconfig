@@ -1,0 +1,9 @@
+
+config MTK_STK3x1x
+        bool "stk3311wv for MediaTek package"
+        default n
+	help
+	It support different type sensor
+	in this platform. If this option
+	is set, it will support ambient
+	and light sensor STK3311WV.
