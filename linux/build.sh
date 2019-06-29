@@ -24,29 +24,15 @@ if [ -z $TOP_ROOT ]; then
     TOP_ROOT=`pwd`
 fi
 
-toolchain="https://codeload.github.com/sochub/arm-eabi/zip/master"
-
-function install_toolchain()
-{
-    if [ ! -d $TOP_ROOT/toolchain/arm-eabi]; then
-        mkdir -p $TOP_ROOT/.tmp_toolchain
-        cd $TOP_ROOT/.tmp_toolchain
-        curl -C - -o ./toolchain $toolchain
-        unzip $TOP_ROOT/.tmp_toolchain/toolchain
-        mkdir -p $TOP_ROOT/toolchain
-        mv $TOP_ROOT/.tmp_toolchain/arm-eabi-master/gcc-arm-eabi/* $TOP_ROOT/toolchain/
-        sudo chmod 755 $TOP_ROOT/toolchain -R
-        rm -rf $TOP_ROOT/.tmp_toolchain
-        cd -
-    fi
-} 
 
 function get_toolchain()
 { 
-    	if [ ! -d $ROOT/toolchain/arm-eabi ]; then
-	cd $ROOT
-	git clone --depth=1 https://github.com/sochub/arm-eabi.git
-        mv $ROOT/arm-linux-eabi $ROOT/toolchain
+    	if [ ! -d $ROOT/toolchain/gcc-arm-eabi -a ! -d $ROOT/arm-eabi ]; then
+		cd $ROOT
+		git clone --depth=1 https://github.com/sochub/arm-eabi.git
+    	fi
+    	if [ -d $ROOT/arm-eabi -a ! -d $ROOT/toolchain/gcc-arm-eabi ]; then
+        	mv $ROOT/arm-eabi $ROOT/toolchain
     	fi
 }
 
@@ -65,18 +51,18 @@ root_check()
 UBOOT_check()
 {
 	for ((i = 0; i < 5; i++)); do
-		UBOOT_PATH=$(whiptail --title "OrangePi Build System" \
+		UBOOT_PATH=$(whiptail --title "MT6737 Linux Build System" \
 			--inputbox "Pls input device node of SDcard.(/dev/sdc)" \
 			10 60 3>&1 1>&2 2>&3)
 	
 		if [ $i = "4" ]; then
-			whiptail --title "OrangePi Build System" --msgbox "Error, Invalid Path" 10 40 0	
+			whiptail --title "MT6737 Linux Build System" --msgbox "Error, Invalid Path" 10 40 0	
 			exit 0
 		fi
 
 
 		if [ ! -b "$UBOOT_PATH" ]; then
-			whiptail --title "OrangePi Build System" --msgbox \
+			whiptail --title "MT6737 Linux Build System" --msgbox \
 				"The input path invalid! Pls input correct path!" \
 				--ok-button Continue 10 40 0	
 		else
@@ -89,18 +75,18 @@ BOOT_check()
 {
 	## Get mount path of u-disk
 	for ((i = 0; i < 5; i++)); do
-		BOOT_PATH=$(whiptail --title "OrangePi Build System" \
+		BOOT_PATH=$(whiptail --title "MT6737 Linux Build System" \
 			--inputbox "Pls input mount path of BOOT.(/media/orangepi/BOOT)" \
 			10 60 3>&1 1>&2 2>&3)
 	
 		if [ $i = "4" ]; then
-			whiptail --title "OrangePi Build System" --msgbox "Error, Invalid Path" 10 40 0	
+			whiptail --title "MT6737 Linux Build System" --msgbox "Error, Invalid Path" 10 40 0	
 			exit 0
 		fi
 
 
 		if [ ! -d "$BOOT_PATH" ]; then
-			whiptail --title "OrangePi Build System" --msgbox \
+			whiptail --title "MT6737 Linux Build System" --msgbox \
 				"The input path invalid! Pls input correct path!" \
 				--ok-button Continue 10 40 0	
 		else
@@ -112,18 +98,18 @@ BOOT_check()
 ROOTFS_check()
 {
 	for ((i = 0; i < 5; i++)); do
-		ROOTFS_PATH=$(whiptail --title "OrangePi Build System" \
+		ROOTFS_PATH=$(whiptail --title "MT6737 Linux Build System" \
 			--inputbox "Pls input mount path of rootfs.(/media/orangepi/rootfs)" \
 			10 60 3>&1 1>&2 2>&3)
 	
 		if [ $i = "4" ]; then
-			whiptail --title "OrangePi Build System" --msgbox "Error, Invalid Path" 10 40 0	
+			whiptail --title "MT6737 Linux Build System" --msgbox "Error, Invalid Path" 10 40 0	
 			exit 0
 		fi
 
 
 		if [ ! -d "$ROOTFS_PATH" ]; then
-			whiptail --title "OrangePi Build System" --msgbox \
+			whiptail --title "MT6737 Linux Build System" --msgbox \
 				"The input path invalid! Pls input correct path!" \
 				--ok-button Continue 10 40 0	
 		else
@@ -146,27 +132,11 @@ if [ ! -d $ROOT/output ]; then
     mkdir -p $ROOT/output
 fi
 
-MENUSTR="Welcome to OrangePi Build System. Pls choose Platform."
-##########################################
-OPTION=$(whiptail --title "OrangePi 4G-iot Build System" \
-	--menu "$MENUSTR" 10 60 3 --cancel-button Exit --ok-button Select \
-	"0"  "OrangePi 4G-iot" \
-	3>&1 1>&2 2>&3)
-
-if [ $OPTION = "0" ]; then
-	export PLATFORM="4g-iot"
-else
-	echo -e "\e[1;31m Pls select correct platform \e[0m"
-	exit 0
-fi
-#cd $ROOT/scripts
-#./Version_Change.sh $PLATFORM
-#cd -
 
 ##########################################
 ## Root Password check
 for ((i = 0; i < 5; i++)); do
-	PASSWD=$(whiptail --title "OrangePi Build System" \
+	PASSWD=$(whiptail --title "MT6737 Build System" \
 		--passwordbox "Enter your root password. Note! Don't use root to run this scripts" \
 		10 60 3>&1 1>&2 2>&3)
 	
@@ -182,7 +152,7 @@ EOF
 	then
 		i=10
 	else
-		whiptail --title "OrangePi Build System" --msgbox "Invalid password, Pls input corrent password" \
+		whiptail --title "MT6737 Build System" --msgbox "Invalid password, Pls input corrent password" \
 			10 40 0	--cancel-button Exit --ok-button Retry
 	fi
 done
@@ -210,7 +180,7 @@ fi
 
 MENUSTR="Pls select build option"
 
-OPTION=$(whiptail --title "OrangePi Build System" \
+OPTION=$(whiptail --title "MT6737 Linux Build System" \
 	--menu "$MENUSTR" 20 60 12 --cancel-button Finish --ok-button Select \
 	"0"   "Build Release Image" \
 	"1"   "Build LK" \
@@ -224,13 +194,13 @@ if [ $OPTION = "0" -o $OPTION = "0" ]; then
 	TMP=$OPTION
 	TMP_DISTRO=""
 	MENUSTR="Distro Options"
-	OPTION=$(whiptail --title "OrangePi Build System" \
+	OPTION=$(whiptail --title "MT6737 Linux Build System" \
 		--menu "$MENUSTR" 20 60 3 --cancel-button Finish --ok-button Select \
 		"0"   "Ubuntu Xenial" \
 		"1"   "Debian Jessie" \
 		3>&1 1>&2 2>&3)
 
-        TYPE=$(whiptail --title "OrangePi Build System" \
+        TYPE=$(whiptail --title "MT6737 Linux Build System" \
                 --menu "$MENUSTR" 20 60 3 --cancel-button Finish --ok-button Select \
                 "0"   "Server" \
                 3>&1 1>&2 2>&3)
@@ -270,7 +240,7 @@ if [ $OPTION = "0" -o $OPTION = "0" ]; then
 	cd $SCRIPTS
 	DISTRO=$TMP_DISTRO
         if [ -d $ROOT/output/${DISTRO}_rootfs_$TMP_TYPE ]; then
-                if (whiptail --title "OrangePi Build System" --yesno \
+                if (whiptail --title "MT6737 Linux Build System" --yesno \
                         "${DISTRO} rootfs has exist! Do you want use it?" 10 60) then
                         OP_ROOTFS=0
                 else
@@ -282,7 +252,7 @@ if [ $OPTION = "0" -o $OPTION = "0" ]; then
 				sudo rm -rf $ROOT/output/rootfs
 			fi
 			sudo mv $ROOT/output/tmp $ROOT/output/rootfs
-			whiptail --title "OrangePi Build System" --msgbox "Rootfs has build" \
+			whiptail --title "MT6737 Linux Build System" --msgbox "Rootfs has build" \
 				10 40 0	--ok-button Continue
 		else
 			sudo rm -rf $ROOT/output/${DISTRO}_rootfs_$TMP_TYPE
@@ -300,7 +270,7 @@ if [ $OPTION = "0" -o $OPTION = "0" ]; then
 	fi
 	if [ $TMP = "0" ]; then 
                 sudo ./build_image.sh $DISTRO $PLATFORM $TYPE
-                whiptail --title "OrangePi Build System" --msgbox "Succeed to build Image" \
+                whiptail --title "MT6737 Linux Build System" --msgbox "Succeed to build Image" \
                                 10 40 0 --ok-button Continue
 	fi
 	exit 0
@@ -331,12 +301,12 @@ elif [ $OPTION = "10" ]; then
 	clear
 	UBOOT_check
 	clear
-	whiptail --title "OrangePi Build System" \
+	whiptail --title "MT6737 Linux Build System" \
 			 --msgbox "Burning Image to SDcard. Pls select Continue button" \
 				10 40 0	--ok-button Continue
 	pv "$ROOT/output/${PLATFORM}.img" | sudo dd bs=1M of=$UBOOT_PATH && sync
 	clear
-	whiptail --title "OrangePi Build System" --msgbox "Succeed to Download Image into SDcard" \
+	whiptail --title "MT6737 Linux Build System" --msgbox "Succeed to Download Image into SDcard" \
 				10 40 0	--ok-button Continue
 	exit 0
 elif [ $OPTION = '11' ]; then
@@ -393,7 +363,7 @@ elif [ $OPTION = "11" ]; then
 	git push origin
 	exit 0
 else
-	whiptail --title "OrangePi Build System" \
+	whiptail --title "MT6737 Linux Build System" \
 		--msgbox "Pls select correct option" 10 50 0
 	exit 0
 fi
