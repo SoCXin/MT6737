@@ -41,8 +41,17 @@ function install_toolchain()
     fi
 } 
 
+function get_toolchain()
+{ 
+    	if [ ! -d $ROOT/toolchain/arm-eabi ]; then
+	cd $ROOT
+	git clone --depth=1 https://github.com/sochub/arm-eabi.git
+        mv $ROOT/arm-linux-eabi $ROOT/toolchain
+    	fi
+}
+
 git_configure
-install_toolchain
+get_toolchain
 
 root_check()
 {
