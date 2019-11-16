@@ -36,8 +36,7 @@ function get_toolchain()
     	fi
 }
 
-git_configure
-get_toolchain
+
 
 root_check()
 {
@@ -128,9 +127,6 @@ Update_check()
     	3>&1 1>&2 2>&3)
 }
 
-if [ ! -d $ROOT/output ]; then
-    mkdir -p $ROOT/output
-fi
 
 
 ##########################################
@@ -159,26 +155,11 @@ done
 
 echo $PASSWD | sudo ls &> /dev/null 2>&1
 
-## Check cross tools
-if [ ! -d $ROOT/toolchain/gcc-linaro-aarch -o ! -d $ROOT/toolchain/gcc-linaro-aarch/gcc-linaro/arm-linux-gnueabi ]; then
-	cd $SCRIPTS
-#	./install_toolchain.sh
-	cd -
-fi
 
 if [ ! -d $ROOT/output ]; then
     mkdir -p $ROOT/output
 fi
 
-## prepare development tools
-if [ ! -f $ROOT/output/.tmp_toolchain ]; then
-	cd $SCRIPTS
-	sudo ./Prepare_toolchain.sh
-	touch $ROOT/output/.tmp_toolchain
-	cd -
-fi
-
-MENUSTR="Pls select build option"
 
 OPTION=$(whiptail --title "MT6737 Linux Build System" \
 	--menu "$MENUSTR" 20 60 12 --cancel-button Finish --ok-button Select \
@@ -187,6 +168,9 @@ OPTION=$(whiptail --title "MT6737 Linux Build System" \
 	"2"   "Build Linux" \
 	"3"   "Install Image into EMMC" \
 	3>&1 1>&2 2>&3)
+
+git_configure
+get_toolchain
 
 if [ $OPTION = "0" -o $OPTION = "0" ]; then
 	sudo echo ""
